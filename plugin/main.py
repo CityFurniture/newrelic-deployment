@@ -61,16 +61,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# curl -X POST 'https://api.newrelic.com/v2/applications/${APP_ID}/deployments.json' \
-#      -H 'X-Api-Key:${APIKEY}' -i \
-#      -H 'Content-Type: application/json' \
-#      -d \
-# '{
-#   "deployment": {
-#     "revision": "REVISION",
-#     "changelog": "Added: /v2/deployments.rb, Removed: None",
-#     "description": "Added a deployments resource to the v2 API",
-#     "user": "datanerd@example.com"
-#   }
-# }'
