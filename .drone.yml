@@ -1,0 +1,9 @@
+---
+kind: pipeline
+name: development
+
+steps:
+- name: Newrelic - Application
+  image: cityfurniture/drone-newrelic-deployment
+  settings:
+    app_id: 270444811
