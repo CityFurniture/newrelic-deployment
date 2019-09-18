@@ -6,4 +6,6 @@ steps:
 - name: Newrelic - Application
   image: cityfurniture/drone-newrelic-deployment
   settings:
-    app_id: 270444811
+    app_id: 
+    api_key:
+    user: Drone.io

@@ -1,15 +1,12 @@
 const https = require('https')
 
-console.log(process.env)
-const NR_APP_ID   = '270444811' // process.env.app_id''
-const NR_API_KEY  =  'dabbe9389c668085fc8857f66151622e' // process.env.api_key
+const NR_APP_ID   = process.env.PLUGIN_APP_ID
+const NR_API_KEY  =  process.env.PLUGIN_API_KEY
 
-let NR_USER     = 'Rabea Still testing' //process.env.user
-if (!NR_USER) NR_USER = 'Drone.io'
-
-const NR_REVISION = "Change log deployment graphql testing"
-const NR_CHANGE_LOG = NR_REVISION
-const NR_DESCRIPTION = NR_REVISION
+const NR_USER         = (process.env.DRONE_COMMIT_AUTHOR) ? process.env.DRONE_COMMIT_AUTHOR : 'Drone CI'
+const NR_REVISION     = (process.env.DRONE_COMMIT_SHA) ? process.env.DRONE_COMMIT_SHA : 'No Text In Revision'
+const NR_CHANGE_LOG   = (process.env.DRONE_COMMIT_MESSAGE) ? process.env.DRONE_COMMIT_MESSAGE : 'No Text In Changelog'
+const NR_DESCRIPTION  = (process.env.DRONE_COMMIT_MESSAGE) ? process.env.DRONE_COMMIT_MESSAGE : 'No Text In Description'
 
 if (!NR_APP_ID) throw Error("'Newrelic APP_ID is required'")
 if (!NR_API_KEY) throw Error("'Newrelic API_KEY is required'")
@@ -36,10 +33,22 @@ const options = {
   }
 }
 
+let responseString = '';
 const req = https.request(options, (res) => {
-  res.on('data', (d) => {
-    process.stdout.write(d)
-  })
+  res.on('data', (chunk) => {
+    responseString += chunk;
+  });
+
+  res.on('end', () => {
+    const responseObj = JSON.parse(responseString)
+    console.log(`Newrelic Deployment ID: ${responseObj.deployment.id}`)
+    console.log(`Newrelic Deployment revision: ${responseObj.deployment.revision}`)
+    console.log(`Newrelic Deployment changelog: ${responseObj.deployment.changelog}`)
+    console.log(`Newrelic Deployment description: ${responseObj.deployment.description}`)
+    console.log(`Newrelic Deployment user: ${responseObj.deployment.user}`)
+    console.log(`Newrelic Deployment timestamp: ${responseObj.deployment.timestamp}`)
+    // your code here if you want to use the results !
+  });
 })
 
 req.on('error', (error) => {

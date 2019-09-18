@@ -5,9 +5,8 @@ FROM mhart/alpine-node:10
 MAINTAINER Rabea Abdelwahab <rabeea@city-furniture.com>
 
 
-RUN mkdir -p /opt/drone
-WORKDIR /opt/drone
+WORKDIR /drone/src
 
-COPY plugin /opt/drone/
+COPY plugin /drone/src
 
-CMD ["node","index.js"]
+CMD ["node","plugin/index.js"]
