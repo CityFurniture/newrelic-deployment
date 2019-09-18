@@ -1,0 +1,19 @@
+{
+  "name": "newrelic-deployment",
+  "version": "1.0.0",
+  "description": "Drone CI - Newrelic Deployment",
+  "main": "plugin/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CityFurniture/newrelic-deployment.git"
+  },
+  "author": "Rabea Abdelwahab",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CityFurniture/newrelic-deployment/issues"
+  },
+  "homepage": "https://github.com/CityFurniture/newrelic-deployment#readme"
+}
