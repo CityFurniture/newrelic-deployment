@@ -1,6 +1,6 @@
 Write your plugin documentation here.
 
-The following parameters are used to configuration the plugin's behavior:
+The following parameters are used to configure the plugin's behavior:
 
 * **api_key** - Newrelic API Key
 * **app_id** - Newrelic App ID
