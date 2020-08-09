@@ -3,10 +3,10 @@ const https = require('https')
 const NR_APP_ID   = process.env.PLUGIN_APP_ID
 const NR_API_KEY  =  process.env.PLUGIN_API_KEY
 
-const NR_USER         = (process.env.DRONE_COMMIT_AUTHOR) ? process.env.DRONE_COMMIT_AUTHOR : 'Drone CI'
-const NR_REVISION     = (process.env.DRONE_COMMIT_SHA) ? process.env.DRONE_COMMIT_SHA : 'No Text In Revision'
-const NR_CHANGE_LOG   = (process.env.DRONE_COMMIT_MESSAGE) ? process.env.DRONE_COMMIT_MESSAGE : 'No Text In Changelog'
-const NR_DESCRIPTION  = (process.env.DRONE_COMMIT_MESSAGE) ? process.env.DRONE_COMMIT_MESSAGE : 'No Text In Description'
+const NR_USER         = process.env.PLUGIN_USER || process.env.DRONE_COMMIT_AUTHOR || 'Drone CI'
+const NR_REVISION     = process.env.PLUGIN_REVISION || process.env.DRONE_COMMIT_SHA || 'No Text In Revision'
+const NR_CHANGE_LOG   = process.env.PLUGIN_CHANGE_LOG || process.env.DRONE_COMMIT_MESSAGE || 'No Text In Changelog'
+const NR_DESCRIPTION  = process.env.PLUGIN_DESCRIPTION || process.env.DRONE_COMMIT_MESSAGE || 'No Text In Description'
 
 if (!NR_APP_ID) throw Error("'Newrelic APP_ID is required'")
 if (!NR_API_KEY) throw Error("'Newrelic API_KEY is required'")
