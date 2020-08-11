@@ -9,4 +9,4 @@ WORKDIR /drone/src
 
 COPY plugin /drone/src
 
-CMD ["node","plugin/index.js"]
+CMD ["node","index.js"]
